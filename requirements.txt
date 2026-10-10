@@ -1,0 +1,4 @@
+# to use this just copy paste the message in the terminal: pip install -r requirements.txt
+streamlit
+google-genai
+python-dotenv
