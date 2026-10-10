@@ -2,7 +2,9 @@ import streamlit as st
 import time
 from google import genai
 from dotenv import load_dotenv
+
 load_dotenv()
+
 client = genai.Client()
 
 
@@ -141,7 +143,7 @@ with res_col2:
     st.metric(label="Total Annual Carbon Footprint", value=f"{total_co2_kg:,} kg CO₂")
 
 
-car_type=st.selectbox("select car type", [
+car_type=st.selectbox("Select Car Type", [
     # Mainstream Passenger
     "Sedan", "Coupe", "Hatchback", "Convertible", "Station Wagon",
     
@@ -156,16 +158,16 @@ car_type=st.selectbox("select car type", [
 ])
 
 year_manufactured=st.slider(
-    label="Select a Year",
+    label="Select Year Of Manufacture",
     min_value=1990,
     max_value=2030,
     value=2026,  # Default starting position
     step=1       # Increments by 1 year
 )
 
-model=st.text_input("enter the model")
+model=st.text_input("Enter the model")
 
-company_name=st.text_input("enter the company name")
+company_name=st.text_input("Enter the company name")
 
 prompt=f""" You Are A carbon footprint calculator. Calculate the carbon footprint of {car_type} 
 manufactured in {year_manufactured} by {company_name} model {model}. Provide the result in kg 
@@ -261,6 +263,7 @@ if st.button("Calculate Carbon Footprint"):
     )
     with st.spinner("Please Wait ....",show_time=True):
         time.sleep(5)
-    st.success("Your Carbon Footprint Calculation is Ready !!!!")
+
+    st.success("Your Carbon Footprint Calculation  Is Ready !!!!")
     st.write(interaction.output_text)
 
